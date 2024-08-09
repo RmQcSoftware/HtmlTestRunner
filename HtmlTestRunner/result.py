@@ -420,12 +420,7 @@ class HtmlTestResult(TextTestResult):
         while tb and self._is_relevant_tb_level(tb):
             tb = tb.tb_next
 
-        if exctype is test.failureException:
-            # Skip assert*() traceback levels
-            length = self._count_relevant_tb_levels(tb)
-            msg_lines = traceback.format_exception(exctype, value, tb, length)
-        else:
-            msg_lines = traceback.format_exception(exctype, value, tb)
+        msg_lines = traceback.format_exception(exctype, value, tb)
 
         if self.buffer:
             # Only try to get sys.stderr as it might not be
